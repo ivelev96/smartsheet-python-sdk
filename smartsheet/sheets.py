@@ -333,25 +333,6 @@ class Sheets:
 
         return response
 
-    def delete_data_classification(self, sheet_id: int) -> Union[Result[None], Error]:
-        """Removes the data classification from a Sheet. Requires ADMIN or OWNER access.
-
-        Args:
-            sheet_id (int): Sheet ID
-
-        Returns:
-            Union[Result[None], Error]: The result of the operation, or an Error object if the request fails.
-        """
-        _op = fresh_operation("delete_data_classification")
-        _op["method"] = "DELETE"
-        _op["path"] = "/sheets/" + str(sheet_id) + "/dataclassification"
-
-        expected = ["Result", None]
-        prepped_request = self._base.prepare_request(_op)
-        response = self._base.request(prepped_request, expected, _op)
-
-        return response
-
     def delete_sheet(self, sheet_id) -> Union[Result[None], Error]:
         """Delete the specified Sheet.
 
