@@ -17,7 +17,10 @@ def test_set_data_classification_generated_url_is_correct():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({"dataClassification": "CONFIDENTIAL"})
+    data_classification_obj = DataClassification({
+        "dataClassification": "CONFIDENTIAL",
+        "justification": "Contains customer PII",
+    })
 
     client.Sheets.set_data_classification(
         sheet_id=TEST_SHEET_ID,
@@ -40,7 +43,10 @@ def test_set_data_classification_all_response_properties():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({"dataClassification": "CONFIDENTIAL"})
+    data_classification_obj = DataClassification({
+        "dataClassification": "CONFIDENTIAL",
+        "justification": "Contains customer PII",
+    })
 
     response = client.Sheets.set_data_classification(
         sheet_id=TEST_SHEET_ID,
@@ -53,7 +59,7 @@ def test_set_data_classification_all_response_properties():
     # Request body assertion
     wiremock_request = get_wiremock_request(request_id)
     body = json.loads(wiremock_request["body"])
-    assert body == {"dataClassification": "CONFIDENTIAL"}
+    assert body == {"dataClassification": "CONFIDENTIAL", "justification": "Contains customer PII"}
 
     # Response body assertion
     assert response.to_dict() == {
@@ -71,7 +77,10 @@ def test_set_data_classification_custom_label():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({"dataClassification": "Top Secret"})
+    data_classification_obj = DataClassification({
+        "dataClassification": "Top Secret",
+        "justification": "Contains customer PII",
+    })
 
     response = client.Sheets.set_data_classification(
         sheet_id=TEST_SHEET_ID,
@@ -84,7 +93,7 @@ def test_set_data_classification_custom_label():
     # Request body assertion
     wiremock_request = get_wiremock_request(request_id)
     body = json.loads(wiremock_request["body"])
-    assert body == {"dataClassification": "Top Secret"}
+    assert body == {"dataClassification": "Top Secret", "justification": "Contains customer PII"}
 
     # Response body assertion
     assert response.to_dict() == {
@@ -99,7 +108,10 @@ def test_set_data_classification_error_4xx():
         "/errors/400-response", request_id
     )
 
-    data_classification_obj = DataClassification({"dataClassification": "CONFIDENTIAL"})
+    data_classification_obj = DataClassification({
+        "dataClassification": "CONFIDENTIAL",
+        "justification": "Contains customer PII",
+    })
 
     response = client.Sheets.set_data_classification(
         sheet_id=TEST_SHEET_ID,
@@ -115,7 +127,10 @@ def test_set_data_classification_error_5xx():
         "/errors/500-response", request_id
     )
 
-    data_classification_obj = DataClassification({"dataClassification": "CONFIDENTIAL"})
+    data_classification_obj = DataClassification({
+        "dataClassification": "CONFIDENTIAL",
+        "justification": "Contains customer PII",
+    })
 
     response = client.Sheets.set_data_classification(
         sheet_id=TEST_SHEET_ID,

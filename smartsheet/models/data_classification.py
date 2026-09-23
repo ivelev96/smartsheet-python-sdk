@@ -32,6 +32,7 @@ class DataClassification:
             self._base = base_obj
 
         self._data_classification = String()
+        self._justification = String()
 
         if props:
             deserialize(self, props)
@@ -45,6 +46,14 @@ class DataClassification:
     @data_classification.setter
     def data_classification(self, value):
         self._data_classification.value = value
+
+    @property
+    def justification(self):
+        return self._justification.value
+
+    @justification.setter
+    def justification(self, value):
+        self._justification.value = value
 
     def to_dict(self):
         return serialize(self)
