@@ -43,7 +43,6 @@ from .copy_or_move_row_result import CopyOrMoveRowResult
 from .criteria import Criteria
 from .cross_sheet_reference import CrossSheetReference
 from .currency import Currency
-from .data_classification import DataClassification
 from .date_object_value import DateObjectValue
 from .discussion import Discussion
 from .downloaded_file import DownloadedFile
@@ -108,6 +107,7 @@ from .search_result_item import SearchResultItem
 from .sent_update_request import SentUpdateRequest
 from .server_info import ServerInfo
 from .sheet import Sheet
+from .sheet_data_classification import SheetDataClassification
 from .sheet_email import SheetEmail
 from .sheet_filter import SheetFilter
 from .sheet_filter_details import SheetFilterDetails

@@ -3,7 +3,7 @@ import uuid
 from urllib.parse import urlparse, parse_qs
 
 from smartsheet.models import Error, Result
-from smartsheet.models.data_classification import DataClassification
+from smartsheet.models.sheet_data_classification import SheetDataClassification
 from tests.mock_api.sheets.common_test_constants import TEST_SHEET_ID, TEST_SUCCESS_MESSAGE, TEST_RESULT_CODE
 from tests.mock_api.mock_api_test_helper import (
     get_mock_api_client,
@@ -17,7 +17,7 @@ def test_set_data_classification_generated_url_is_correct():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({
+    data_classification_obj = SheetDataClassification({
         "dataClassification": "CONFIDENTIAL",
         "justification": "Contains customer PII",
     })
@@ -43,7 +43,7 @@ def test_set_data_classification_all_response_properties():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({
+    data_classification_obj = SheetDataClassification({
         "dataClassification": "CONFIDENTIAL",
         "justification": "Contains customer PII",
     })
@@ -77,7 +77,7 @@ def test_set_data_classification_custom_label():
         "/sheets/set-data-classification/all-response-body-properties", request_id
     )
 
-    data_classification_obj = DataClassification({
+    data_classification_obj = SheetDataClassification({
         "dataClassification": "Top Secret",
         "justification": "Contains customer PII",
     })
@@ -108,7 +108,7 @@ def test_set_data_classification_error_4xx():
         "/errors/400-response", request_id
     )
 
-    data_classification_obj = DataClassification({
+    data_classification_obj = SheetDataClassification({
         "dataClassification": "CONFIDENTIAL",
         "justification": "Contains customer PII",
     })
@@ -127,7 +127,7 @@ def test_set_data_classification_error_5xx():
         "/errors/500-response", request_id
     )
 
-    data_classification_obj = DataClassification({
+    data_classification_obj = SheetDataClassification({
         "dataClassification": "CONFIDENTIAL",
         "justification": "Contains customer PII",
     })

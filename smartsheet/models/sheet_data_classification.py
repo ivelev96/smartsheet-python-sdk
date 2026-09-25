@@ -21,12 +21,12 @@ from ..types import String, json
 from ..util import deserialize, serialize
 
 
-class DataClassification:
+class SheetDataClassification:
 
-    """Smartsheet DataClassification data model."""
+    """Smartsheet SheetDataClassification data model."""
 
     def __init__(self, props=None, base_obj=None):
-        """Initialize the DataClassification model."""
+        """Initialize the SheetDataClassification model."""
         self._base = None
         if base_obj is not None:
             self._base = base_obj

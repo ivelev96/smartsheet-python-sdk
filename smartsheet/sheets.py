@@ -26,9 +26,9 @@ import six
 
 from .util import fresh_operation
 from .models import AutomationRule, BulkItemResult, Column, CopyOrMoveRowResult, CrossSheetReference, \
-    DataClassification, DownloadedFile, IndexResult, NumberObjectValue, Result, Row, SearchResult, \
-    SentUpdateRequest, Sheet, SheetFilter, SheetPathNode, SheetPublish, SheetSummary, SummaryField, \
-    UpdateRequest, Version, Error
+    DownloadedFile, IndexResult, NumberObjectValue, Result, Row, SearchResult, \
+    SentUpdateRequest, Sheet, SheetDataClassification, SheetFilter, SheetPathNode, SheetPublish, SheetSummary, \
+    SummaryField, UpdateRequest, Version, Error
 from .types import TypedList
 from .util import deprecated
 
@@ -311,13 +311,13 @@ class Sheets:
 
         return response
 
-    def set_data_classification(self, sheet_id: int, data_classification_obj: DataClassification) -> Union[Result[None], Error]:
+    def set_data_classification(self, sheet_id: int, data_classification_obj: SheetDataClassification) -> Union[Result[None], Error]:
         """Sets the data classification on a Sheet.
 
         Args:
             sheet_id (int): Sheet ID
             data_classification_obj
-                (DataClassification): DataClassification object.
+                (SheetDataClassification): SheetDataClassification object.
 
         Returns:
             Union[Result[None], Error]: The result of the operation, or an Error object if the request fails.
