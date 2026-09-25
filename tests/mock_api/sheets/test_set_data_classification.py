@@ -4,7 +4,13 @@ from urllib.parse import urlparse, parse_qs
 
 from smartsheet.models import Error, Result
 from smartsheet.models.sheet_data_classification import SheetDataClassification
-from tests.mock_api.sheets.common_test_constants import TEST_SHEET_ID, TEST_SUCCESS_MESSAGE, TEST_RESULT_CODE
+from tests.mock_api.sheets.common_test_constants import (
+    TEST_SHEET_ID,
+    TEST_SUCCESS_MESSAGE,
+    TEST_RESULT_CODE,
+    TEST_DATA_CLASSIFICATION,
+    TEST_DATA_CLASSIFICATION_JUSTIFICATION,
+)
 from tests.mock_api.mock_api_test_helper import (
     get_mock_api_client,
     get_wiremock_request,
@@ -18,8 +24,8 @@ def test_set_data_classification_generated_url_is_correct():
     )
 
     data_classification_obj = SheetDataClassification({
-        "dataClassification": "CONFIDENTIAL",
-        "justification": "Contains customer PII",
+        "dataClassification": TEST_DATA_CLASSIFICATION,
+        "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION,
     })
 
     client.Sheets.set_data_classification(
@@ -44,8 +50,8 @@ def test_set_data_classification_all_response_properties():
     )
 
     data_classification_obj = SheetDataClassification({
-        "dataClassification": "CONFIDENTIAL",
-        "justification": "Contains customer PII",
+        "dataClassification": TEST_DATA_CLASSIFICATION,
+        "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION,
     })
 
     response = client.Sheets.set_data_classification(
@@ -59,7 +65,7 @@ def test_set_data_classification_all_response_properties():
     # Request body assertion
     wiremock_request = get_wiremock_request(request_id)
     body = json.loads(wiremock_request["body"])
-    assert body == {"dataClassification": "CONFIDENTIAL", "justification": "Contains customer PII"}
+    assert body == {"dataClassification": TEST_DATA_CLASSIFICATION, "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION}
 
     # Response body assertion
     assert response.to_dict() == {
@@ -79,7 +85,7 @@ def test_set_data_classification_custom_label():
 
     data_classification_obj = SheetDataClassification({
         "dataClassification": "Top Secret",
-        "justification": "Contains customer PII",
+        "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION,
     })
 
     response = client.Sheets.set_data_classification(
@@ -93,7 +99,7 @@ def test_set_data_classification_custom_label():
     # Request body assertion
     wiremock_request = get_wiremock_request(request_id)
     body = json.loads(wiremock_request["body"])
-    assert body == {"dataClassification": "Top Secret", "justification": "Contains customer PII"}
+    assert body == {"dataClassification": "Top Secret", "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION}
 
     # Response body assertion
     assert response.to_dict() == {
@@ -109,8 +115,8 @@ def test_set_data_classification_error_4xx():
     )
 
     data_classification_obj = SheetDataClassification({
-        "dataClassification": "CONFIDENTIAL",
-        "justification": "Contains customer PII",
+        "dataClassification": TEST_DATA_CLASSIFICATION,
+        "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION,
     })
 
     response = client.Sheets.set_data_classification(
@@ -128,8 +134,8 @@ def test_set_data_classification_error_5xx():
     )
 
     data_classification_obj = SheetDataClassification({
-        "dataClassification": "CONFIDENTIAL",
-        "justification": "Contains customer PII",
+        "dataClassification": TEST_DATA_CLASSIFICATION,
+        "justification": TEST_DATA_CLASSIFICATION_JUSTIFICATION,
     })
 
     response = client.Sheets.set_data_classification(
